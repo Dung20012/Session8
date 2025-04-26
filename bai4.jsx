@@ -1,39 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/home/Home'
+import About from './pages/about/About'
+import Contact from './pages/contact/Contact'
+import Login from './pages/login/Login'
 
-
-const Home = () => <h1>Đây là trang chủ</h1>;
-
-
-const Contact = () => <h1>Đây là trang liên hệ</h1>;
-
-
-const Navbar = () => (
-  <nav style={{ marginBottom: "20px" }}>
-    <Link to="/" style={{ marginRight: "10px" }}>Home</Link>
-    <Link to="/contact">Contact</Link>
-  </nav>
-);
-
-
-const App = () => {
+function App() {
   return (
-    <BrowserRouter>
-      <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-};
+    <>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} /> // khi đg dẫn 5173 sẽ là home contact home
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} /> // khi xuộc vào contact sẽ hiển thị là home contact home
+        <Route path='/login' element={<Login />} />
 
+      </Routes>
+      </BrowserRouter>
+    </>
+  )
+}
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export default App
