@@ -1,40 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/home/Home'
+import About from './pages/about/About'
+import Contact from './pages/contact/Contact'
+import Login from './pages/login/Login'
 
-
-const Login = () => {
+function App() {
   return (
-    <div>
-      <h1>Đây là trang đăng nhập</h1>
-      <form>
-        <div>
-          <label>Email: </label>
-          <input type="email" placeholder="Nhập email" />
-        </div>
-        <div>
-          <label>Mật khẩu: </label>
-          <input type="password" placeholder="Nhập mật khẩu" />
-        </div>
-        <button type="submit">Đăng nhập</button>
-      </form>
-    </div>
-  );
-};
-
-const App = () => {
-  return (
-    <BrowserRouter>
+    <>
+      <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<Login />} /> // xuộc đường link login để đi vào trang login
+
       </Routes>
-    </BrowserRouter>
-  );
-};
+      </BrowserRouter>
+    </>
+  )
+}
 
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export default App
