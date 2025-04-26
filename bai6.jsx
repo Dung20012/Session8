@@ -1,69 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
+import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/home/Home'
+import About from './pages/about/About'
+import Contact from './pages/contact/Contact'
+import Login from './pages/login/Login'
+import Product from './pages/product/Product'
+import Detail from './pages/detail/Detail'
+import ListUser from './components/ListUser'
+import UserDetail from './components/UserDetail'
 
-
-const users = [
-  { id: 1, name: "Nguyễn Văn A", email: "a@gmail.com", address: "Hà Nội" },
-  { id: 2, name: "Trần Thị B", email: "b@gmail.com", address: "TP.HCM" },
-  { id: 3, name: "Lê Văn C", email: "c@gmail.com", address: "Đà Nẵng" },
-];
-
-
-const ListUser = () => {
+function App() {
   return (
-    <div>
-      <h2>Danh sách người dùng</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id} style={{ marginBottom: "10px" }}>
-            <p><strong>{user.name}</strong></p>
-            <p>{user.email}</p>
-            <Link to={`/user/${user.id}`}>
-              <button>Xem chi tiết</button>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    <>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/product' element={<Product />} />
+        <Route path='/detail' element={<Detail />} />
+        <Route path='/listuser' element={<ListUser />} /> // xuộc vào đường dẫn listuser dẫn tới trang listuser
+        <Route path='/user/:id' element={<UserDetail/>} />
+      </Routes>
+      </BrowserRouter>
+    </>
+  )
+}
 
-
-const UserDetail = () => {
-  const { id } = useParams();
-  const user = users.find((u) => u.id === parseInt(id));
-
-  if (!user) return <p>Không tìm thấy người dùng!</p>;
-
-  return (
-    <div>
-      <h2>Chi tiết người dùng</h2>
-      <p><strong>ID:</strong> {user.id}</p>
-      <p><strong>Họ tên:</strong> {user.name}</p>
-      <p><strong>Email:</strong> {user.email}</p>
-      <p><strong>Địa chỉ:</strong> {user.address}</p>
-      <Link to="/"><button>Quay lại</button></Link>
-    </div>
-  );
-};
-
-
-const App = () => {
-  return (
-    <BrowserRouter>
-      <div style={{ padding: "20px", fontFamily: "Arial" }}>
-        <Routes>
-          <Route path="/" element={<ListUser />} />
-          <Route path="/user/:id" element={<UserDetail />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-};
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export default App
